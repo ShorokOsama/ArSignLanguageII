@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CameraActivity">
+
+    <org.opencv.android.JavaCameraView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/javaCamView"
+        />
+
+    <TextView
+        android:layout_width="250pt"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_output"
+        android:background="#8888"
+        android:textColor="@color/black"
+        android:textSize="24dp"
+        android:padding="3pt"
+        android:maxLength="50"
+        android:layout_marginLeft="90dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="80dp"
+        android:text="_"
+        android:layout_alignBottom="@id/javaCamView"
+        android:layout_alignLeft="@id/javaCamView"/>
+
+    <ToggleButton
+        android:id="@+id/toggleButton"
+        android:layout_width="92dp"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@id/javaCamView"
+        android:text="ToggleButton"
+        android:layout_marginRight="80dp"
+        android:layout_marginTop="40dp"
+        android:textOff="كلمات"
+        android:textOn="حروف" />
+
+    <Button
+        android:id="@+id/back_btn"
+        android:layout_width="92dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#666"
+        android:layout_marginTop="70dp"
+        android:layout_marginRight="80dp"
+        android:layout_alignRight="@id/javaCamView"
+        android:layout_alignLeft="@id/toggleButton"
+        android:layout_alignTop="@id/toggleButton"
+        android:text="التراجع"/>
+
+    <Button
+        android:id="@+id/speech_btn"
+        android:layout_width="92dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#666"
+        android:textSize="14dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginRight="80dp"
+        android:layout_alignRight="@id/javaCamView"
+        android:layout_alignTop="@id/back_btn"
+        android:text="تحدث"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/exp_letter"
+        android:textColor="#000"
+        android:textSize="18dp"
+        android:text="None"
+        android:layout_marginLeft="90dp"
+        android:layout_alignTop="@id/server_status"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/server_status"
+        android:textColor="#000"
+        android:textSize="18dp"
+        android:text="None"
+        android:layout_alignRight="@id/javaCamView"
+        android:layout_marginLeft="90dp"
+        android:layout_marginRight="80dp"
+        android:layout_marginTop="10dp"/>
+
+
+</RelativeLayout>
+

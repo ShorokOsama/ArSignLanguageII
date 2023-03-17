@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/editAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_marginLeft="40dp"
+        android:inputType="text"
+        android:text="http://192.168.1.7:5000"
+        android:visibility="invisible"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/ar_cam_btn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Camera"
+            android:layout_weight="1"
+            android:layout_margin="40dp"/>
+
+        <Button
+            android:id="@+id/ar_armband_btn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Armband"
+            android:layout_weight="1"
+            android:layout_margin="40dp"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>
