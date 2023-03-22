@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient"
     android:padding="16dp"
     android:orientation="vertical"
     tools:context=".MainActivity">
@@ -11,33 +12,52 @@
     <EditText
         android:id="@+id/editAddress"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
+        android:layout_height="5dp"
         android:layout_marginLeft="40dp"
+        android:ems="10"
         android:inputType="text"
         android:text="http://192.168.1.7:5000"
-        android:visibility="invisible"/>
+        android:visibility="invisible" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/ar_settings_btn"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginRight="150dp"
+            android:layout_marginLeft="30dp"
+            android:background="@mipmap/settings_foreground"/>
+
+
+        <TextView
+            android:layout_width="202dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Sign AI"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="250dp"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/ar_cam_btn"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:text="Camera"
-            android:layout_weight="1"
-            android:layout_margin="40dp"/>
+            android:layout_width="256dp"
+            android:layout_height="240dp"
+            android:layout_marginLeft="250dp"
+            android:layout_marginTop="0dp"
+            android:background="@mipmap/cameraa_foreground" />
 
-        <Button
-            android:id="@+id/ar_armband_btn"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:text="Armband"
-            android:layout_weight="1"
-            android:layout_margin="40dp"/>
+
 
 
     </LinearLayout>

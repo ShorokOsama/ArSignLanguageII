@@ -13,7 +13,7 @@ import org.opencv.android.OpenCVLoader;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button camBtn, armbandBtn;
+    Button camBtn;
     EditText editServer;
     static String IPAddress;
 
@@ -25,13 +25,12 @@ public class MainActivity extends AppCompatActivity {
         Log.d("OpenCVModule", "OpenCV Loading Status: " + OpenCVLoader.initDebug());
 
         camBtn = findViewById(R.id.ar_cam_btn);
-        armbandBtn = findViewById(R.id.ar_armband_btn);
         editServer = findViewById(R.id.editAddress);
 
         camBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, CameraActivity.class);
+                Intent intent = new Intent(MainActivity.this, ListActivity.class);
                 IPAddress = editServer.getText().toString();
                 startActivity(intent);
             }

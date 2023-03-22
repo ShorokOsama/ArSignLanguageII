@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/editAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="3dp"
+        android:layout_marginLeft="40dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="http://192.168.1.7:5000"
+        android:visibility="invisible" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+        <Button
+            android:id="@+id/ar_settings_btn"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="150dp"
+            android:background="@mipmap/settings_foreground" />
+
+
+        <TextView
+            android:layout_width="161dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Sign AI"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/ar_words_btn"
+            android:layout_width="130dp"
+            android:layout_height="138dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="10dp"
+            android:background="@mipmap/wordss_foreground"/>
+
+        <Button
+            android:id="@+id/ar_hospital_btn"
+            android:layout_width="158dp"
+            android:layout_height="153dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="0dp"
+            android:background="@mipmap/hospital_foreground" />
+
+        <Button
+            android:id="@+id/ar_bank_btn"
+            android:layout_width="143dp"
+            android:layout_height="180dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="10dp"
+            android:background="@mipmap/bank_foreground" />
+
+        <Button
+            android:id="@+id/ar_shop_btn"
+            android:layout_width="139dp"
+            android:layout_height="150dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="10dp"
+            android:background="@mipmap/shop_foreground"/>
+
+        <Button
+            android:id="@+id/ar_station_btn"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="0dp"
+            android:background="@mipmap/station_foreground"
+            android:foregroundTint="@color/white"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>
