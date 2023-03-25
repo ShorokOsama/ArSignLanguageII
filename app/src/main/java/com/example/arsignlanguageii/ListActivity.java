@@ -42,6 +42,7 @@ public class ListActivity extends AppCompatActivity {
             public void onClick(View view) {
                 category = 2;
                 Intent intent = new Intent( ListActivity.this, CameraActivity.class);
+                IPAddress = editServer.getText().toString();
                 startActivity(intent);
 
             }
@@ -52,6 +53,7 @@ public class ListActivity extends AppCompatActivity {
             public void onClick(View view) {
                 category = 3;
                 Intent intent = new Intent( ListActivity.this, CameraActivity.class);
+                IPAddress = editServer.getText().toString();
                 startActivity(intent);
 
             }
@@ -62,6 +64,7 @@ public class ListActivity extends AppCompatActivity {
             public void onClick(View view) {
                 category = 4;
                 Intent intent = new Intent( ListActivity.this, CameraActivity.class);
+                IPAddress = editServer.getText().toString();
                 startActivity(intent);
 
             }
@@ -72,6 +75,7 @@ public class ListActivity extends AppCompatActivity {
             public void onClick(View view) {
                 category = 5;
                 Intent intent = new Intent( ListActivity.this, CameraActivity.class);
+                IPAddress = editServer.getText().toString();
                 startActivity(intent);
 
             }
