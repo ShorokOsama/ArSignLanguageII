@@ -11,11 +11,12 @@ import android.widget.EditText;
 
 import org.opencv.android.OpenCVLoader;
 
+enum Categories {general, bank, cafe, train, hospital}
+
 public class ListActivity extends AppCompatActivity {
-    Button cameraBtn,bankBtn,hospitalBtn,shopBtn,stationBtn;
-    EditText editServer;
-    static Integer category;
-    static String IPAddress;
+    Button generalBtn,bankBtn,hospitalBtn,cafeBtn,stationBtn;
+    static Categories cat;
+    static String[] words, arWords;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,15 +24,20 @@ public class ListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list2);
         Log.d("OpenCVModule", "OpenCV Loading Status: " + OpenCVLoader.initDebug());
 
-        cameraBtn = findViewById(R.id.ar_words_btn);
-        editServer = findViewById(R.id.editAddress);
+        generalBtn = findViewById(R.id.ar_general_btn);
 
-        cameraBtn.setOnClickListener(new View.OnClickListener() {
+        generalBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                category = 1;
+                cat = Categories.general;
+                words = new String[]{"and", "clear", "college", "communication", "computer", "deaf", "disability",
+                        "easy", "goal", "hello", "help", "information", "me", "name", "question", "rehabilitation",
+                        "science", "speaking", "team", "university", "we", "what", "yes", "you", "zagazig"};
+                arWords = new String[]{"و", "واضح", "كليه", "تواصل", "حاسبات", "صم", "اعاقه",
+                        "سهل", "هدف", "مرحبا", "مساعدة", "معلومات", "انا", "اسم", "سؤال", "تأهيل",
+                        "علوم", "المتكلمين", "فريق", "جامعة", "نحن", "ماذا", "نعم", "انت", "الزقازيق"};
+
                 Intent intent = new Intent(ListActivity.this, CameraActivity.class);
-                IPAddress = editServer.getText().toString();
                 startActivity(intent);
             }
         });
@@ -40,9 +46,15 @@ public class ListActivity extends AppCompatActivity {
         bankBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                category = 2;
+                cat = Categories.bank;
+                words = new String[]{"Bank", "Bank manager", "Financial benefits", "Form", "How much",
+                        "Id card", "Revenues", "Visa", "Withdraw money", "account", "and", "doing",
+                        "expenses", "finance", "hello", "help", "loan", "money", "money transfer", "me"};
+                arWords = new String[]{"بنك", "مدير البنك", "الفوائد", "استمارة", "كام",
+                        "بطاقة", "إرادات", "فيزا", "اسحب", "حساب", "و", "يعمل",
+                        "مصروفات", "تمويل", "مرحبا", "مساعدة", "قرض", "فلوس", "حوالة", "انا"};
+                
                 Intent intent = new Intent( ListActivity.this, CameraActivity.class);
-                IPAddress = editServer.getText().toString();
                 startActivity(intent);
 
             }
@@ -51,20 +63,34 @@ public class ListActivity extends AppCompatActivity {
         hospitalBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                category = 3;
+                cat = Categories.hospital;
+                words = new String[]{"my", "name", "sick", "tired", "problem", "pressure", "headache", "gauze",
+                        "illness", "eyes", "deaf", "corona", "cold", "blood", "Tell me", "Anemia",
+                        "Diabetes", "How are you", "Pregnancy", "Injection", "bones", "brain", "burn", "liver",
+                        "nerves"};
+                arWords = new String[]{"انا", "اسم", "مريض", "تعبان", "مشكلة", "ضغط", "صداع", "شاش",
+                        "مرض", "عيون", "اصم", "كورونا", "برد", "دم", "Tell قولي", "انيميا",
+                        "سكر", "عامل ايه", "حمل", "حقنة", "عظام", "مخ", "حرق", "كبد",
+                        "اعصاب"};
+
                 Intent intent = new Intent( ListActivity.this, CameraActivity.class);
-                IPAddress = editServer.getText().toString();
                 startActivity(intent);
 
             }
         });
-        shopBtn = findViewById(R.id.ar_shop_btn);
-        shopBtn.setOnClickListener(new View.OnClickListener() {
+        cafeBtn = findViewById(R.id.ar_cafe_btn);
+        cafeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                category = 4;
+                cat = Categories.cafe;
+                words = new String[]{"How much", "Roselle", "anise", "banana", "cinnamon", "berell",
+                        "coffee", "cold", "drink", "doing", "hot", "in", "juice", "lemon", "mango", "me",
+                        "milk", "nescafe", "or", "orange", "pepsi", "question", "spoon", "tea", "water"};
+                arWords = new String[]{"كام", "كركديه", "ينسون", "موز", "قرفة", "بيريل",
+                        "قهوة", "بارد", "اشرب", "يعمل", "سخن", "في", "عصير", "لمون", "مانجا", "انا",
+                        "لبن", "نسكفية", "او", "برتقال", "بيبسي", "سؤال", "معلقة", "شاي", "مياه"};
+                
                 Intent intent = new Intent( ListActivity.this, CameraActivity.class);
-                IPAddress = editServer.getText().toString();
                 startActivity(intent);
 
             }
@@ -73,9 +99,15 @@ public class ListActivity extends AppCompatActivity {
         stationBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                category = 5;
+                cat = Categories.train;
+                words = new String[]{"question", "Alexandria", "Train", "He will come", "Cairo",
+                        "Mansoura", "Tanta", "Damanhur", "zagazig", "Integrated services card",
+                        "need", "ticket", "late", "I go", "me"};
+                arWords = new String[]{"سؤال", "اسكندرية", "قطار", "هيجي", "القاهرة",
+                        "المنصورة", "طنطا", "دمنهور", "الزقازيق", "بطاقة الخدمات المتكاملة",
+                        "عايز", "تذكرة", "متأخر", "اروح", "انا"};
+                
                 Intent intent = new Intent( ListActivity.this, CameraActivity.class);
-                IPAddress = editServer.getText().toString();
                 startActivity(intent);
 
             }

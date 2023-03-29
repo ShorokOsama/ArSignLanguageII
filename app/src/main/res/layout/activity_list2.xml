@@ -5,89 +5,88 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
     android:orientation="vertical"
-    android:padding="16dp"
+    android:padding="8dp"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/editAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="3dp"
-        android:layout_marginLeft="40dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="http://192.168.1.7:5000"
-        android:visibility="invisible" />
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp">
+        android:layout_height="100dp"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/ar_settings_btn"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="150dp"
-            android:background="@mipmap/settings_foreground" />
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:background="@mipmap/settings_foreground"/>
 
 
         <TextView
-            android:layout_width="161dp"
+            android:layout_width="202dp"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-condensed"
             android:text="Sign AI"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textSize="35sp"
             android:textStyle="bold"
+            android:shadowColor="#000"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2"
             tools:ignore="HardcodedText" />
-    </LinearLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/ar_words_btn"
-            android:layout_width="130dp"
-            android:layout_height="138dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="10dp"
-            android:background="@mipmap/wordss_foreground"/>
-
-        <Button
-            android:id="@+id/ar_hospital_btn"
-            android:layout_width="158dp"
-            android:layout_height="153dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="0dp"
-            android:background="@mipmap/hospital_foreground" />
-
-        <Button
-            android:id="@+id/ar_bank_btn"
-            android:layout_width="143dp"
-            android:layout_height="180dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="10dp"
-            android:background="@mipmap/bank_foreground" />
-
-        <Button
-            android:id="@+id/ar_shop_btn"
-            android:layout_width="139dp"
-            android:layout_height="150dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="10dp"
-            android:background="@mipmap/shop_foreground"/>
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="50dp">
 
         <Button
             android:id="@+id/ar_station_btn"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="0dp"
+            android:layout_weight="1"
+            android:paddingTop="50dp"
             android:background="@mipmap/station_foreground"
             android:foregroundTint="@color/white"/>
+
+        <Button
+            android:id="@+id/ar_hospital_btn"
+            android:layout_width="158dp"
+            android:layout_height="153dp"
+            android:layout_weight="1"
+            android:paddingTop="30dp"
+            android:background="@mipmap/hospital_foreground" />
+
+        <Button
+            android:id="@+id/ar_general_btn"
+            android:layout_width="130dp"
+            android:layout_height="138dp"
+            android:layout_weight="1"
+            android:background="@mipmap/wordss_foreground"/>
+
+
+        <Button
+            android:id="@+id/ar_bank_btn"
+            android:layout_width="143dp"
+            android:layout_height="180dp"
+            android:layout_weight="1"
+            android:paddingTop="30dp"
+            android:background="@mipmap/bank_foreground" />
+
+        <Button
+            android:id="@+id/ar_cafe_btn"
+            android:layout_width="139dp"
+            android:layout_height="150dp"
+            android:layout_weight="1"
+            android:paddingTop="50dp"
+            android:background="@mipmap/shop_foreground"/>
+
 
 
     </LinearLayout>

@@ -59,7 +59,7 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
     private Mat mRgba;
     TextView output, serverStatus, expLetter;
     ToggleButton toggle;
-    Button speechBtn;
+    Button speechBtn, clearBtn;
     boolean alpha = false;
 
     // Alphabet Variables
@@ -83,8 +83,8 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
     int FRAMES_NO = 60;
     int wordIndex;
 
-//    private final String url = "http://192.168.1.2:5000";
-    private final String url = MainActivity.IPAddress;
+//    private final String URL = "http://192.168.1.2:5000";
+    private String URL;
     private String msg = "None";
     private String responseString, clss;
     private OkHttpClient okHttpClient;
@@ -95,18 +95,16 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
     String[] ar_alphabet = {"ا", "ب", "ت", "ث", "ج", "ح","خ", "د","ذ", "ر", "ز", "س",
             "ش", "ص","ض", "ط", "ظ","ع", "غ", "ف", "ق","ك","ل", "م","ن", "ه", "و","ي"};
 
-    String[] words = {"hello", "we", "team", "university", "zagazig", "goal", "communication", "easy",
-            "help", "deaf", "and", "speaking", "college", "computer", "information", "science",
-            "disability","rehabilitation", "you", "me", "name", "question", "clear", "yes", "what"};
+    String[] words = ListActivity.words;
 
-    String[] arWords = {"مرحبا", "نحن", "فريق", "جامعه", "الزقازيق", "هدفنا", "تواصل", "سهل",
-            "مساعدة", "الصم", "و", "المتكلمين", "كليه", "حاسبات", "معلومات", "علوم", "اعاقه",
-            "تأهيل", "انت", "انا", "اسمي", "سؤال", "واضح", "نعم", "ماذا"};
+    String[] arWords = ListActivity.arWords;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
+
+        Log.d("APII-category", String.valueOf(ListActivity.cat));
 
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 1);
@@ -120,6 +118,16 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
         expLetter = findViewById(R.id.exp_letter);
         output = findViewById(R.id.text_output);
         serverStatus = findViewById(R.id.server_status);
+
+        URL = setURL();
+
+        clearBtn = findViewById(R.id.back_btn);
+        clearBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                output.setText("_");
+            }
+        });
 
         speechBtn = findViewById(R.id.speech_btn);
         speechBtn.setOnClickListener(new View.OnClickListener() {
@@ -151,7 +159,7 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
         okHttpClient = new OkHttpClient();
 
         // building a request
-        Request request = new Request.Builder().url(url).build();
+        Request request = new Request.Builder().url(URL).build();
 
         // making call asynchronously
         okHttpClient.newCall(request).enqueue(new Callback() {
@@ -181,6 +189,7 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
                     @Override
                     public void run() {
 //                        serverStatus.setText(msg);
+//                        Log.d("FlaskAPII", msg);
                         serverStatus.setText("متصل..");
                     }
                 });
@@ -259,7 +268,7 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
                             MediaType.parse("application/json"), json);
 
                     Request request = new Request.Builder()
-                            .url(url)
+                            .url(URL)
                             .post(body)
                             .build();
 
@@ -290,13 +299,15 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
                         @Override
                         public void run() {
                             currentText = output.getText().toString().substring(0, output.getText().length()-1);
-                            if(wordIndex>=0)
+                            if(wordIndex>=0){
                                 output.setText( currentText + arWords[wordIndex] + " _");
+                                mTTS.speak(arWords[wordIndex],TextToSpeech.QUEUE_FLUSH, null, "id");
+                            }
 
 //                            expLetter.setText("_");
 //                        output.setText(arWords[wordIndex]);
 //                        Log.d("TextToSpeech", clss+"");
-                        mTTS.speak(arWords[wordIndex],TextToSpeech.QUEUE_FLUSH, null, "id");
+
                         }
                     });
 
@@ -463,6 +474,14 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
         ByteArrayOutputStream buffer = new ByteArrayOutputStream(bitmap.getWidth() * bitmap.getHeight());
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, buffer);
         return buffer.toByteArray();
+    }
+
+    public String setURL(){
+        String address = MainActivity.IPAddress;
+        String url = address + "/" + String.valueOf(ListActivity.cat);
+
+        Log.d("FlaskAPII-URL", url);
+        return url;
     }
 
     @Override
