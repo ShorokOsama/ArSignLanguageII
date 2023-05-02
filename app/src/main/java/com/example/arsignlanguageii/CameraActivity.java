@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import net.jpountz.lz4.LZ4Compressor;
+import net.jpountz.lz4.LZ4Factory;
+
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -90,6 +93,10 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
     private OkHttpClient okHttpClient;
     private String encodedVid = "[";
     private TextToSpeech mTTS;
+
+    byte[] frame, frame_compressed, sizeData, finalData;
+    LZ4Factory factory;
+    LZ4Compressor compressor;
 
 
     String[] ar_alphabet = {"ا", "ب", "ت", "ث", "ج", "ح","خ", "د","ذ", "ر", "ز", "س",
@@ -217,6 +224,11 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
             }
         });
 
+        //----------------------Compression----------------------
+        factory = LZ4Factory.fastestInstance();
+        compressor = factory.fastCompressor();
+
+
 
     }
 
@@ -246,8 +258,19 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
                 y++;
                 y = y % FRAMES_NO;
 
+                //----------------------Compression----------------------
+                frame = convertBitmapToByteArray(finalFrame);
+                //Log.d("APII - f size before", frame.length+"");
+                sizeData = ByteBuffer.allocate(4).putInt(frame.length).array();
+                frame_compressed = compressor.compress(frame);
+
+                finalData = new byte[frame_compressed.length + sizeData.length];
+                System.arraycopy(sizeData, 0, finalData, 0, sizeData.length);
+                System.arraycopy(frame_compressed, 0, finalData, sizeData.length, frame_compressed.length);
+
+
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    String encodedFrameString = Base64.getEncoder().encodeToString(convertBitmapToByteArray(finalFrame));
+                    String encodedFrameString = Base64.getEncoder().encodeToString(finalData);
                     encodedVid += "\"" + encodedFrameString + "\",";
                 }
 
@@ -262,7 +285,9 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
                     Log.d("APII", encodedVid);
 
                     String json = String.format("{\"frames\":%s}", encodedVid);
+                    Log.d("StringSize-APII", json.getBytes().length/1024.0/1024.0+"");
                     encodedVid = "[";
+
 
                     RequestBody body = RequestBody.create(
                             MediaType.parse("application/json"), json);
@@ -278,7 +303,7 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
                         long startTime = System.currentTimeMillis();
                         Response predResponse = call.execute();
                         long estimatedTime = System.currentTimeMillis() - startTime;
-                        Log.d("TIMEE - call execution", (estimatedTime/1000)+" seconds");
+                        Log.d("APII - TIMEEexecution", (estimatedTime/1000)+" seconds");
 
                         Log.d("APII code", predResponse.code() + "");
 
@@ -472,7 +497,8 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
 
     public byte[] convertBitmapToByteArray(Bitmap bitmap) {
         ByteArrayOutputStream buffer = new ByteArrayOutputStream(bitmap.getWidth() * bitmap.getHeight());
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, buffer);
+//        bitmap.compress(Bitmap.CompressFormat.PNG, 100, buffer);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, buffer);
         return buffer.toByteArray();
     }
 

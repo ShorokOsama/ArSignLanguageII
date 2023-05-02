@@ -9,19 +9,9 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/editAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="5dp"
-        android:layout_marginLeft="40dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="http://192.168.1.7:5000"
-        android:visibility="invisible" />
-
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="80dp"
         android:orientation="horizontal">
 
         <Button
@@ -49,6 +39,16 @@
             android:shadowDy="1"
             android:shadowRadius="2"
             tools:ignore="HardcodedText" />
+
+        <EditText
+            android:id="@+id/editAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:ems="10"
+            android:inputType="text"
+            android:text="http://192.168.1.6:5000" />
     </RelativeLayout>
 
     <LinearLayout

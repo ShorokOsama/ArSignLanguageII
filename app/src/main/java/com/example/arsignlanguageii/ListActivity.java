@@ -47,12 +47,16 @@ public class ListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 cat = Categories.bank;
-                words = new String[]{"Bank", "Bank manager", "Financial benefits", "Form", "How much",
-                        "Id card", "Revenues", "Visa", "Withdraw money", "account", "and", "doing",
-                        "expenses", "finance", "hello", "help", "loan", "money", "money transfer", "me"};
-                arWords = new String[]{"بنك", "مدير البنك", "الفوائد", "استمارة", "كام",
-                        "بطاقة", "إرادات", "فيزا", "اسحب", "حساب", "و", "يعمل",
-                        "مصروفات", "تمويل", "مرحبا", "مساعدة", "قرض", "فلوس", "حوالة", "انا"};
+                words = new String[]{"account", "Alexandria", "Bank", "because", "branch", "Cairo",
+                        "finance", "governorate", "hello", "How are you", "in", "Integrated services card",
+                        "loan", "me", "money", "need", "ok", "on", "open", "project", "question",
+                        "savings book", "Thank god", "what", "Withdraw money", "yes",
+                        "you", "Your health is fine؟"};
+                arWords = new String[]{"حساب", "اسكندرية", "بنك", "عشان", "فرع", "القاهرة",
+                        "تمويل", "محافظة", "مرحبا", "عامل ايه", "في", "بطاقة الخدمات المتكاملة",
+                        "قرض", "انا", "فلوس", "عايز", "تمام", "على", "يفتح", "مشروع", "سؤال",
+                        "دفتر توفير", "الحمدلله", "ماذا", "اسحب", "ايوه",
+                        "انت", "صحتك تمام"};
                 
                 Intent intent = new Intent( ListActivity.this, CameraActivity.class);
                 startActivity(intent);
