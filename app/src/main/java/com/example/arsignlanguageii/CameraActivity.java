@@ -111,6 +111,8 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
 
+        Locale.setDefault(Locale.ENGLISH);
+
         Log.d("APII-category", String.valueOf(ListActivity.cat));
 
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
@@ -395,8 +397,6 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
 
     public String[] getExpectedLetter(Bitmap img){
         try {
-
-            Locale.setDefault(Locale.ENGLISH);
 
             ArabicAlphabetSL model = ArabicAlphabetSL.newInstance(this);
 
