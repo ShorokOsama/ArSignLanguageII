@@ -395,6 +395,9 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
 
     public String[] getExpectedLetter(Bitmap img){
         try {
+
+            Locale.setDefault(Locale.ENGLISH);
+
             ArabicAlphabetSL model = ArabicAlphabetSL.newInstance(this);
 
             // Creates inputs for reference.

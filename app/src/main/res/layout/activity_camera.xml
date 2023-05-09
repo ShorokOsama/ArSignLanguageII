@@ -75,6 +75,7 @@
         android:textSize="18dp"
         android:text="None"
         android:layout_marginLeft="90dp"
+        android:layout_alignParentLeft="true"
         android:layout_alignTop="@id/server_status"/>
 
     <TextView
